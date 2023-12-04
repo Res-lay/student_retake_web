@@ -11,7 +11,6 @@ function SubjectsPage({func_logout}) {
 
     const [subjects, setSubjects] = useState([]);
     const [student, setStudent] = useState(null);
-    // const [subjectTeacher, setSubjectTeacher] = useState(null);
     const [expandedSubject, setExpandedSubject] = useState(null);
     const [subjectsTeacher, setSubjectsTeacher] = useState({});
     const [phoneVersion, setPhoneVersion] = useState(window.innerWidth <= 440);

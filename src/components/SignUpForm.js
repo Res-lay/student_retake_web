@@ -1,11 +1,10 @@
-import React, {useState} from "react";
-import {useNavigate} from "react-router-dom";
+import React, { useState } from "react";
 import styles from "../styles/AuthPage.module.css";
 
 import axios from "axios";
 
 
-function SignUpForm({changeProcess}) {
+function SignUpForm({ changeProcess }) {
 
     const [formData, setFormData] = useState({
         email: "",
@@ -17,19 +16,20 @@ function SignUpForm({changeProcess}) {
 
 
     const handleInputChange = (e) => {
+        const { name, value } = e.target;
+        setErrorMessage("");
+        
         if (name === "role" && !value.trim()) {
             setFormData((prevData) => ({
                 ...prevData,
                 [name]: "student"
             }))
+        } else {
+            setFormData((prevData) => ({
+                ...prevData,
+                [name]: value,
+            }));
         }
-        const {name, value} = e.target;
-        setErrorMessage("");
-        setFormData({
-            ...formData,
-            [name]: value,
-
-        });
     };
 
     const handleSubmit = async (e) => {
@@ -67,42 +67,42 @@ function SignUpForm({changeProcess}) {
                         transition: '.5s',
                         opacity: errorMessage ? "1" : "0",
                     }}>
-                        <div style={{color:"white"}}>Passwords do not match</div>
+                        <div style={{ color: "white" }}>Passwords do not match</div>
                     </div>
 
                     <div className={styles.group}>
                         <label htmlFor="password">Email:</label>
                         <input className={styles.inputField}
-                               type="text"
-                               required
-                               id="email"
-                               name="email"
-                               value={formData.email} //default value
-                               onChange={handleInputChange}
+                            type="text"
+                            required
+                            id="email"
+                            name="email"
+                            value={formData.email} //default value
+                            onChange={handleInputChange}
                         />
-                        <span className={styles.focus_border}/>
+                        <span className={styles.focus_border} />
                     </div>
                     <div className={styles.group}>
                         <label htmlFor="password">Password:</label>
                         <input className={styles.inputField}
-                               type="password"
-                               id="password"
-                               name="password"
-                               value={formData.password} //default value
-                               onChange={handleInputChange}
+                            type="password"
+                            id="password"
+                            name="password"
+                            value={formData.password} //default value
+                            onChange={handleInputChange}
                         />
-                        <span className={styles.focus_border}/>
+                        <span className={styles.focus_border} />
                     </div>
                     <div className={styles.group}>
                         <label htmlFor="confirmPassword">Password confirm:</label>
                         <input className={styles.inputField}
-                               type="password"
-                               id="confirmPassword"
-                               name="confirmPassword"
-                               value={formData.confirmPassword} //default value
-                               onChange={handleInputChange}
+                            type="password"
+                            id="confirmPassword"
+                            name="confirmPassword"
+                            value={formData.confirmPassword} //default value
+                            onChange={handleInputChange}
                         />
-                        <span className={styles.focus_border}/>
+                        <span className={styles.focus_border} />
                     </div>
                     <button type="submit" className={styles.login_button}>
                         Sign Up
@@ -119,7 +119,7 @@ function SignUpForm({changeProcess}) {
                 }}>Already have an account?
                 </div>
                 <button onClick={() => changeProcess("login")}
-                        className={styles.signUpButton}>
+                    className={styles.signUpButton}>
                     Log in
                 </button>
             </div>

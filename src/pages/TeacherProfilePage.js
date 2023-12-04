@@ -1,4 +1,4 @@
-import React, {useEffect, useRef, useState} from "react";
+import React, {useEffect, useState} from "react";
 import styles from "../styles/TeacherPage.module.css"
 
 import user_image from "../images/avatar.png"
@@ -26,6 +26,10 @@ function TeacherProfilePage(logout) {
         }
     });
 
+    const handleResize = () => {
+        setMobileVersion(window.innerWidth <= 440);
+    };
+
     useEffect(() => {
         async function fetchData() {
             axiosInstance.get('/teachers/teacher', {
@@ -45,7 +49,14 @@ function TeacherProfilePage(logout) {
             }).catch(error => console.error(error));
         }
 
+        window.addEventListener('resize', handleResize);
+
         fetchData();
+
+        return () => {
+            window.removeEventListener('resize', handleResize);
+        }
+
     }, [])
 
 
