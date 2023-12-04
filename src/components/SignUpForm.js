@@ -10,17 +10,25 @@ function SignUpForm({changeProcess}) {
     const [formData, setFormData] = useState({
         email: "",
         password: "",
-        confirmPassword: ""
+        confirmPassword: "",
+        role: ""
     });
     const [errorMessage, setErrorMessage] = useState('');
 
 
     const handleInputChange = (e) => {
+        if (name === "role" && !value.trim()) {
+            setFormData((prevData) => ({
+                ...prevData,
+                [name]: "student"
+            }))
+        }
         const {name, value} = e.target;
         setErrorMessage("");
         setFormData({
             ...formData,
             [name]: value,
+
         });
     };
 
