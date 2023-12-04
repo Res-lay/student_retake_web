@@ -263,3 +263,16 @@
     }
 
 }
+
+@media screen and (max-width: 440px) {
+    .login_button{
+        width: 97%;
+    }
+    .signupContainer{
+        width: 100%;
+        justify-content: space-evenly;
+    }
+    .group{
+        width: 100%;
+    }
+}
